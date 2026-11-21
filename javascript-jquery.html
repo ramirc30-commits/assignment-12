@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<script
+			  src="https://code.jquery.com/jquery-4.0.0.min.js"
+			  integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+			  crossorigin="anonymous"></script>
+		<script
+			  src="https://code.jquery.com/ui/1.14.2/jquery-ui.min.js"
+			  integrity="sha256-mblSWfbYzaq/f+4akyMhE6XELCou4jbkgPv+JQPER2M="
+			  crossorigin="anonymous"></script>
+		
+<head>
+    <meta charset="UTF-8">
+    <title>Draggable Image Example</title>
+    <style>
+		
+	  body {
+		background: whitesmoke;
+		  
+		} #page {
+			background: white;
+			 width: 7in;
+       		 height: 9in;
+       		 background: white;
+        	 border: 1px solid darkgray;
+       		 margin: 48px auto;
+		 
+		} #walnut {
+            position: absolute;
+            left: 550px;
+            top: 200px;
+            width: 150px;
+            cursor: grab;
+            user-select: none;
+			z-index: 101;
+		} #bowl {
+			width: 300px;
+			height: auto;
+			position: absolute;
+			top: 400px;
+			right: 550px;
+			z-index: 0;
+			
+		} h1 {
+			font: 20pt/1.4em;
+			text-align: center;
+			
+			
+		} #almond {          
+			position: absolute;
+            left: 300px;
+            top: 200px;
+            width: 150px;
+            cursor: grab;
+            user-select: none;
+			z-index: 100;
+			
+		} #pistacho {          
+			position: absolute;
+            left: 300px;
+            top: 500px;
+            width: 150px;
+            cursor: grab;
+            user-select: none;
+			z-index: 100;
+			
+		} #hazelnut {          
+			position: absolute;
+            left: 700px;
+            top: 700px;
+            width: 150px;
+            cursor: grab;
+            user-select: none;
+			z-index: 100;
+			
+		} #cashew {          
+			position: absolute;
+            left: 500px;
+            top: 450px;
+            width: 150px;
+            cursor: grab;
+            user-select: none;
+			z-index: 100;
+				
+}
+    </style>
+</head>
+
+<body>
+<div id="page">
+  <h1>Place the nuts in the bowls</h1>
+		
+
+<img src="Artboard 1.png" id="walnut" alt="Draggable Image">
+
+<img src="almond.png" id="almond" alt="Draggable Image">
+	
+<img src="pistacho.png" id="pistacho" alt="Draggable Image">
+	
+<img src="hazelnut.png" id="hazelnut" alt="Draggable Image">
+	
+<img src="almond.png" id="cashew" alt="Draggable Image">
+	
+
+	<script>
+$(document).ready(function() {
+
+    // Make the small circles draggable
+    $("#walnut, #almond, #pistacho, #hazelnut, #cashew").draggable({
+        revert: "invalid",
+        containment: "window"
+    });
+
+    // Make the large circle a drop target
+    $("#bowl").droppable({
+
+        accept: "#walnut, #almond, #pistacho, #hazelnut, #cashew",
+
+        drop: function(event, ui) {
+
+            // Move the small circle into the big circle
+            $(ui.draggable).appendTo("#bowl");
+
+            // Position it inside the large circle
+            $(ui.draggable).css({
+                position: "absolute",
+                top: Math.random() * 150 + 40,
+                left: Math.random() * 150 + 40
+            });
+
+            // Stop dragging after it has been dropped
+            $(ui.draggable).draggable("disable");
+
+        }
+    });
+
+});
+</script>
+	
+  <img src="basket.png" id="bowl">
+</div>
+</body>
+</html>
